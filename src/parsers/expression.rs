@@ -25,11 +25,14 @@ mod expression_tests {
     fn can_parse_basic_expression() {
         assert_eq!(
             Expression::new("1+2"),
-            ("", Expression {
-                lhs: Integer(1),
-                rhs: Integer(2),
-                op: Operator::Add
-            })
+            (
+                "",
+                Expression {
+                    lhs: Integer(1),
+                    rhs: Integer(2),
+                    op: Operator::Add
+                }
+            )
         );
     }
 
@@ -37,11 +40,14 @@ mod expression_tests {
     fn can_parse_multidigit_expression() {
         assert_eq!(
             Expression::new("100-20"),
-            ("", Expression {
-                lhs: Integer(100),
-                rhs: Integer(20),
-                op: Operator::Subtract
-            })
+            (
+                "",
+                Expression {
+                    lhs: Integer(100),
+                    rhs: Integer(20),
+                    op: Operator::Subtract
+                }
+            )
         );
     }
 }
