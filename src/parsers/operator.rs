@@ -3,7 +3,7 @@ pub enum Operator {
     Add,
     Subtract,
     Multiply,
-    Divide
+    Divide,
 }
 
 impl Operator {
@@ -14,7 +14,7 @@ impl Operator {
             "-" => Operator::Subtract,
             "*" => Operator::Multiply,
             "/" => Operator::Divide,
-            _ => unimplemented!("Operator not implemented")
+            _ => unimplemented!("Operator not implemented"),
         };
 
         (&input[1..], op)
