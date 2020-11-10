@@ -6,10 +6,15 @@ export RUSTFLAGS="-Zprofile -Ccodegen-units=1 -Copt-level=0 -Clink-dead-code -Co
 export RUSTDOCFLAGS="-Cpanic=abort"
 
 # Remove artifacts from previous run
-rm target/debug/deps/*.gcda
+rm -f target/debug/deps/*.gcda
 
 # Run tests
-cargo test
+cargo test -v
 
 # Generate HTML report
-grcov ./target/debug/ -s . -t html --llvm --branch --ignore-not-existing -o ./target/debug/coverage/
+
+if [ -f "./grcov" ]; then
+    ./grcov ./target/debug/ -s . -t html --llvm --branch --ignore-not-existing -o ./target/debug/coverage/
+else
+    grcov ./target/debug/ -s . -t html --llvm --branch --ignore-not-existing -o ./target/debug/coverage/
+fi
