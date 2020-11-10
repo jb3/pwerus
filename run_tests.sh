@@ -6,7 +6,7 @@ export RUSTFLAGS="-Zprofile -Ccodegen-units=1 -Copt-level=0 -Clink-dead-code -Co
 export RUSTDOCFLAGS="-Cpanic=abort"
 
 # Remove artifacts from previous run
-rm target/debug/deps/*.gcda
+rm -f target/debug/deps/*.gcda
 
 # Run tests
 cargo test -v
