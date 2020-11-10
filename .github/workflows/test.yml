@@ -23,6 +23,12 @@ jobs:
         toolchain: nightly
         components: rustfmt, clippy
 
+    - name: Lint with clippy
+      run: cargo clippy --all-targets --all-features -- -D warnings -D pedantic
+
+    - name: Lint with rustfmt
+      run: cargo fmt -- --check
+
   test:
     runs-on: ubuntu-latest
 
