@@ -62,6 +62,7 @@ jobs:
 
       - name: Upload code coverage results
         uses: actions/upload-artifact@v2
+        if: matrix.channel == 'nightly'
         with:
           name: coverage
           path: target/debug/coverage
