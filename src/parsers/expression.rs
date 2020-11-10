@@ -23,25 +23,25 @@ mod expression_tests {
 
     #[test]
     fn can_parse_basic_expression() {
-        let (_, op) = Operator::new("+");
-        let (_, a) = Integer::new("1");
-        let (_, b) = Integer::new("2");
-
         assert_eq!(
             Expression::new("1+2"),
-            ("", Expression { lhs: a, rhs: b, op })
+            ("", Expression {
+                lhs: Integer(1),
+                rhs: Integer(2),
+                op: Operator::Add
+            })
         );
     }
 
     #[test]
     fn can_parse_multidigit_expression() {
-        let (_, op) = Operator::new("-");
-        let (_, a) = Integer::new("100");
-        let (_, b) = Integer::new("20");
-
         assert_eq!(
             Expression::new("100-20"),
-            ("", Expression { lhs: a, rhs: b, op })
+            ("", Expression {
+                lhs: Integer(100),
+                rhs: Integer(20),
+                op: Operator::Subtract
+            })
         );
     }
 }
