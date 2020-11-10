@@ -4,7 +4,7 @@ use super::{integer::Integer, operator::Operator};
 pub struct Expression {
     pub lhs: Integer,
     pub rhs: Integer,
-    pub op: Operator
+    pub op: Operator,
 }
 
 impl Expression {
@@ -13,9 +13,7 @@ impl Expression {
         let (rest, op) = Operator::new(rest);
         let (rest, rhs) = Integer::new(rest);
 
-        (rest, Self {
-            lhs, rhs, op
-        })
+        (rest, Self { lhs, rhs, op })
     }
 }
 
@@ -29,11 +27,10 @@ mod expression_tests {
         let (_, a) = Integer::new("1");
         let (_, b) = Integer::new("2");
 
-        assert_eq!(Expression::new("1+2"), ("", Expression {
-            lhs: a,
-            rhs: b,
-            op: op
-        }));
+        assert_eq!(
+            Expression::new("1+2"),
+            ("", Expression { lhs: a, rhs: b, op })
+        );
     }
 
     #[test]
@@ -42,10 +39,9 @@ mod expression_tests {
         let (_, a) = Integer::new("100");
         let (_, b) = Integer::new("20");
 
-        assert_eq!(Expression::new("100-20"), ("", Expression {
-            lhs: a,
-            rhs: b,
-            op: op
-        }));
+        assert_eq!(
+            Expression::new("100-20"),
+            ("", Expression { lhs: a, rhs: b, op })
+        );
     }
 }
