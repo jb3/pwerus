@@ -52,11 +52,11 @@ jobs:
 
       - name: Run tests with cargo test
         run: cargo test -v
-        if: ${{ matrix.channel }} == 'nightly'
+        if: matrix.channel == 'nightly'
 
       - name: Run tests with test script
         run: ./run_tests.sh
-        if: ${{ matrix.channel }} != 'nightly'
+        if: matrix.channel != 'nightly'
 
   build:
     runs-on: ubuntu-latest
