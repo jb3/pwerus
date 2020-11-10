@@ -50,8 +50,13 @@ jobs:
       - name: Install grcov
         run: curl -L https://github.com/mozilla/grcov/releases/latest/download/grcov-linux-x86_64.tar.bz2 | tar jxf -
 
-      - name: Run tests
+      - name: Run tests with cargo test
+        run: cargo test -v
+        if: ${{ matrix.channel }} == 'nightly'
+
+      - name: Run tests with test script
         run: ./run_tests.sh
+        if: ${{ matrix.channel }} != 'nightly'
 
   build:
     runs-on: ubuntu-latest
