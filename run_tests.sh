@@ -9,7 +9,7 @@ export RUSTDOCFLAGS="-Cpanic=abort"
 rm target/debug/deps/*.gcda
 
 # Run tests
-cargo test
+cargo test -v
 
 # Generate HTML report
 grcov ./target/debug/ -s . -t html --llvm --branch --ignore-not-existing -o ./target/debug/coverage/

@@ -10,13 +10,59 @@ env:
   CARGO_TERM_COLOR: always
 
 jobs:
-  build:
-
+  lint:
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v2
-    - name: Build
-      run: cargo build --verbose
-    - name: Run tests
-      run: cargo test --verbose
+
+    - name: Install nightly rust
+      uses: actions-rs/toolchain@v1
+      with:
+        profile: minimal
+        toolchain: nightly
+        components: rustfmt, clippy
+
+  test:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        channel:
+          - stable
+          - nightly
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install rust ${{ matrix.channel }}
+        uses: actions-rs/toolchain@v1
+        with:
+          profile: minimal
+          toolchain: ${{ matrix.channel }}
+
+      - name: Install grcov
+        run: cargo install grcov
+
+      - name: Run tests
+        run: ./run_tests.sh
+
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        channel:
+          - stable
+          - nightly
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install Rust ${{ matrix.channel }}
+        uses: actions-rs/toolchain@v1
+        with:
+          profile: minimal
+
+      - name: Build Pwerus
+        run: cargo build -v
