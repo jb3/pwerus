@@ -42,7 +42,7 @@ jobs:
           toolchain: ${{ matrix.channel }}
 
       - name: Install grcov
-        run: cargo install grcov
+        run: curl -L https://github.com/mozilla/grcov/releases/latest/download/grcov-linux-x86_64.tar.bz2 | tar jxf -
 
       - name: Run tests
         run: ./run_tests.sh
