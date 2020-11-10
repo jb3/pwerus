@@ -60,6 +60,12 @@ jobs:
         run: ./run_tests.sh
         if: matrix.channel == 'nightly'
 
+      - name: Upload code coverage results
+        uses: actions/upload-artifact@v2
+        with:
+          name: coverage
+          path: target/debug/coverage
+
   build:
     runs-on: ubuntu-latest
 
